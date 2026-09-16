@@ -1615,15 +1615,16 @@ a{
       padding:18px 0 0;
     }
     .reception-cala{
-      left:40px;
+      left:160px;
       bottom:210px;
-      top:-180px;
+      top:-130px;
       width:130px;
     }
     .reception-oval{
       width:min(100%, 200px);
       min-height:310px;
       padding:32px 16px 24px;
+      left:60px;
     }
     .reception-oval .event-note-place{
       font-size:20px;
@@ -2401,8 +2402,13 @@ body{
 
 .transfer-modal h3{
   margin:0 0 10px;
-  font-size:38px;
+  font-size:20px;
   line-height:1.1;
+  background:var(--gold-text);
+  background-size:220% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
 }
 
 .transfer-info p,
@@ -2430,6 +2436,7 @@ body{
 #albumTitle,
 #rsvpTitle,
 #wishesTitle,
+#ceremonyTitle,
 #receptionTitle,
 #closingSubtitle{
   background:var(--gold-text);
