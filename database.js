@@ -64,8 +64,8 @@ function buildEventConfigSeedPayload(source = window.config) {
     : String(source?.evento?.ceremonia?.hora || "16:00").trim();
   return {
     eventId: resolveEventId(source?.event?.defaultEventId),
-    bride: source?.pareja?.novia || "Anfitrión 1",
-    groom: source?.pareja?.novio || "Anfitrión 2",
+    hostOne: source?.pareja?.anfitrion1 || "Anfitrión 1",
+    hostTwo: source?.pareja?.anfitrion2 || "Anfitrión 2",
     date: formattedDate,
     time: formattedTime,
     timezone: "America/Guatemala",

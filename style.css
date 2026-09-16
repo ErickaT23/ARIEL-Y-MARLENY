@@ -2504,3 +2504,26 @@ body{
   border-color:rgba(0,106,78,.2);
   background-color:rgba(247,249,248,.96);
 }
+
+#guest-count{
+  width:100%;
+  min-height:32px;
+  padding:6px 10px;
+  border:1px solid var(--ink);
+  border-radius:999px;
+  background:url("Images/textura-2.png") center/cover no-repeat !important;
+  color:var(--ink) !important;
+  font-family:var(--title);
+  font-size:8px;
+  letter-spacing:.04em;
+  text-align:center;
+  box-shadow:0 3px 8px rgba(0,106,78,.1);
+}
+
+.rsvp-form label[for="guest-count"]{
+  background:var(--gold-text);
+  background-size:220% auto;
+  -webkit-background-clip:text;
+  -webkit-text-fill-color:transparent;
+  background-clip:text;
+}

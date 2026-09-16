@@ -145,13 +145,13 @@ function renderInvitationContent() {
 
   setText("#coverTag", pareja.portadaEtiqueta || "Celebremos juntos");
   setHtml("#coverCouple", escapeHtml(pareja.nombres || "Nuestra celebración").replace("&amp;", '<span class="amp">&</span>'));
-  setText("#heroBrideName", pareja.novia || "Ariel");
-  setText("#heroGroomName", pareja.novio || "Marleny");
+  setText("#heroHostOneName", pareja.anfitrion1 || "Ariel");
+  setText("#heroHostTwoName", pareja.anfitrion2 || "Marleny");
   setText("#marriageNoteText", ceremonia.mensaje);
-  setText("#brideParentsTitle", ceremonia.padresNoviaTitulo);
-  setText("#brideParentsNames", ceremonia.padresNovia);
-  setText("#groomParentsTitle", ceremonia.padresNovioTitulo);
-  setText("#groomParentsNames", ceremonia.padresNovio);
+  setText("#celebrationHighlightOneTitle", ceremonia.destacado1Titulo);
+  setText("#celebrationHighlightOneText", ceremonia.destacado1Texto);
+  setText("#celebrationHighlightTwoTitle", ceremonia.destacado2Titulo);
+  setText("#celebrationHighlightTwoText", ceremonia.destacado2Texto);
   setText("#dateHighlightLabel", cfg.textos?.fechaLabel || "Nuestro gran día");
   setText("#dateHighlightValue", pareja.fechaDestacada || pareja.fechaVisible || "00 . 00 . 0000");
   setLink("#calendarBtn", buildCalendarUrl());
@@ -180,16 +180,16 @@ function renderInvitationContent() {
   setText("#albumLink", album.boton || "Subir fotografías");
   setLink("#albumLink", album.url);
   setImage("#albumQr", album.qr || "Images/QR-ALBUM.png", "Código QR para subir fotografías");
-  setText("#transferNames", transferencia.titular || pareja.novia || pareja.nombres);
+  setText("#transferNames", transferencia.titular || pareja.anfitrion1 || pareja.nombres);
   setText("#bankName", transferencia.medio || "");
   setText("#accountNumber", transferencia.cuenta || "");
   setText("#accountType", transferencia.tipo || "");
-  setText("#accountOwner", transferencia.titular || pareja.novia || pareja.nombres);
+  setText("#accountOwner", transferencia.titular || pareja.anfitrion1 || pareja.nombres);
   setText("#wishesTitle", cfg.deseos?.titulo || "Buenos deseos");
   setText("#wishesIntro", cfg.deseos?.intro || "");
   setText("#adultsOnlyTitle", cfg.adultos?.titulo || "Solo adultos");
   setText("#adultsOnlyText", cfg.adultos?.descripcion || "");
-  setText("#rsvpTitle", cfg.rsvp?.titulo || "Confirmar Asistencia");
+  setText("#rsvpTitle", cfg.rsvp?.titulo || "Confirmar asistencia");
   setText("#rsvpCopy", cfg.rsvp?.mensaje || "");
   setText("#closingSubtitle", pareja.cierreSubtitulo || "con amor");
   setText("#closingCouple", pareja.nombres || "Nuestra celebración");
@@ -198,7 +198,7 @@ function renderInvitationContent() {
   setImage("#heroMainImage", galeria.portadaPrincipal || "Images/E2.png", pareja.nombres || "Invitación");
   setImage("#storySepImg", galeria.historia?.[0] || "Images/S1.png", "Galería de la pareja");
   setImage("#celebrationSepImg", galeria.celebracion?.[0] || "Images/C1.png", "Galería de celebración");
-  setImage("#rotatingSepImg", galeria.pareja?.[0] || "Images/F1.png", "Foto pareja");
+  setImage("#rotatingSepImg", galeria.pareja?.[0] || "Images/F1.png", "Foto de la pareja");
 
   const adultsSection = $$("#adultsOnlySection");
   if (adultsSection && adultos.mostrar === false) {
