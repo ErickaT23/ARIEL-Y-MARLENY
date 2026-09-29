@@ -1755,7 +1755,7 @@ a{
     height: 100%;
     object-fit: cover;          /* ✅ full-bleed para slideshow */
     object-position: center;
-    transition: opacity .6s ease;
+     transition: opacity 1.4s ease-in-out;
   }
   .dress{
     background-color: #fff;
@@ -2367,6 +2367,13 @@ body{
   background:rgba(0,106,78,.1);
   border-color:var(--ink);
   color:var(--olive-dark);
+}
+
+#ceremonyMapLink,
+#receptionMapLink,
+#ceremonyMapLink:hover,
+#receptionMapLink:hover{
+  background: url("Images/textura-2.png?v=20260929-2") center/cover no-repeat;
 }
 
 #btnOpenInvite,

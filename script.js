@@ -196,9 +196,9 @@ function renderInvitationContent() {
   setLink("#footerFacebook", cfg.footer?.facebookUrl);
   setLink("#footerInstagram", cfg.footer?.instagramUrl);
   setImage("#heroMainImage", galeria.portadaPrincipal || "Images/E2.png", pareja.nombres || "Invitación");
-  setImage("#storySepImg", galeria.historia?.[0] || "Images/S1.png", "Galería de la pareja");
-  setImage("#celebrationSepImg", galeria.celebracion?.[0] || "Images/C1.png", "Galería de celebración");
-  setImage("#rotatingSepImg", galeria.pareja?.[0] || "Images/F1.png", "Foto de la pareja");
+  setImage("#storySepImg", galeria.historia?.[0] || "Images/F1.png", "Galería de la pareja");
+  setImage("#celebrationSepImg", galeria.celebracion?.[0] || "Images/F4.png", "Galería de celebración");
+  setImage("#rotatingSepImg", galeria.pareja?.[0] || "Images/F7.png", "Foto de la pareja");
 
   const adultsSection = $$("#adultsOnlySection");
   if (adultsSection && adultos.mostrar === false) {
@@ -257,9 +257,9 @@ document.addEventListener("DOMContentLoaded", () => {
   initCountdown(countdownDate.year, countdownDate.month, countdownDate.day, countdownDate.hours, countdownDate.minutes, countdownDate.seconds);
 
   // 6) Separadores rotativos
-  initRotatingSep("rotatingSepImg", getInvitationConfig()?.galeria?.pareja || ["Images/F1.png", "Images/F2.png"]);
-  initRotatingSep("celebrationSepImg", getInvitationConfig()?.galeria?.celebracion || ["Images/C1.png", "Images/C2.png"]);
-  initRotatingSep("storySepImg", getInvitationConfig()?.galeria?.historia || ["Images/S1.png", "Images/S2.png"]);
+  initRotatingSep("rotatingSepImg", getInvitationConfig()?.galeria?.pareja || ["Images/F7.png", "Images/F8.png", "Images/F9.png"]);
+  initRotatingSep("celebrationSepImg", getInvitationConfig()?.galeria?.celebracion || ["Images/F4.png", "Images/F5.png", "Images/F6.png"]);
+  initRotatingSep("storySepImg", getInvitationConfig()?.galeria?.historia || ["Images/F1.png", "Images/F2.png", "Images/F3.png"]);
 });
 
 /* ===================== INVITADO EN PORTADA ===================== */
@@ -452,7 +452,7 @@ function initRotatingSep(imageId, images){
 
   function changeImage(){
 
-    imgEl.style.opacity = 0;
+    imgEl.style.opacity = 0.35;
 
     setTimeout(() => {
 
@@ -468,7 +468,7 @@ function initRotatingSep(imageId, images){
         imgEl.style.opacity = 1;
       }, 120);
 
-    }, 400);
+    }, 700);
 
   }
 

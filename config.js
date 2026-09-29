@@ -57,14 +57,14 @@ const config = {
     ceremonia: {
       titulo: "Ceremonia",
       lugar: "Iglesia Católica de San Pedro Sacatepéquez, S. M.",
-      hora: "15:00 h",
+      hora: "16:00 h",
       direccion: "San Pedro Sacatepéquez, San Marcos",
       ubicacionUrl: "https://maps.app.goo.gl/nkYL8T5JcDtT29kS7"
     },
     recepcion: {
       titulo: "Recepción",
       lugar: "Salón de Eventos del Hotel Posada de Don José León",
-      hora: "16:30 h",
+      hora: "17:00 h",
       direccion: "10.ª avenida 9-62, San Marcos",
       ubicacionUrl: "https://maps.app.goo.gl/KqJHQUi8QoFSuume7"
     },
@@ -76,8 +76,15 @@ const config = {
   itinerario: {
     titulo: "Itinerario",
     items: [
-      { icono: "Images/ICONO-1.png", alt: "Misa", hora: "15:00 h", texto: "Misa de acción de gracias" },
-      { icono: "Images/ICONO-3.png", alt: "Recepción", hora: "16:00 h", texto: "Recepción" }
+      { icono: "Images/IC1.png", alt: "Misa", hora: "16:00 h", texto: "Misa de acción de gracias" },
+      { icono: "Images/IC2.png", alt: "Ingreso de invitados", hora: "17:00 h", texto: "Ingreso de invitados al salón de la recepción" },
+      { icono: "Images/IC3.png", alt: "Ingreso de cumpleañeros y familia", hora: "17:30 h", texto: "Ingreso de cumpleañeros y familia" },
+      { icono: "Images/IC4.png", alt: "Video biográfico", hora: "17:45 h", texto: "Presentación de video biográfico de cumpleañeros" },
+      { icono: "Images/IC5.png", alt: "Brindis", hora: "18:00 h", texto: "Brindis" },
+      { icono: "Images/IC6.png", alt: "Grupo musical", hora: "18:15 h", texto: "Presentación de grupo musical y habilitación de pista de baile" },
+      { icono: "Images/IC7.png", alt: "Cena", hora: "19:30 h", texto: "Servicio de cena" },
+      { icono: "Images/IC8.png", alt: "Pastel", hora: "20:30 h", texto: "Corte simbólico y servicio de pastel" },
+      { icono: "Images/IC9.png", alt: "Fin de la recepción", hora: "23:00 h", texto: "Fin de la recepción" }
     ]
   },
   dressCode: {
@@ -100,9 +107,9 @@ const config = {
     titulo: "Un detalle especial",
     descripcion: "Tu presencia es nuestro mejor regalo. Si deseas tener un detalle con nosotros, puedes hacerlo en efectivo o por medio de una transferencia bancaria.",
     transferencia: {
-      titular: "Ariel de León López",
+      titular: "Ariel Nehemías de León López",
       medio: "Banrural",
-      cuenta: "4680008197",
+      cuenta: "3680000192",
       tipo: "Cuenta monetaria"
     }
   },
@@ -133,9 +140,9 @@ const config = {
   },
   galeria: {
     portadaPrincipal: "Images/E2.png",
-    historia: ["Images/S1.png", "Images/S2.png"],
-    celebracion: ["Images/C1.png", "Images/C2.png"],
-    pareja: ["Images/F1.png", "Images/F2.png"]
+    historia: ["Images/F1.png", "Images/F2.png", "Images/F3.png"],
+    celebracion: ["Images/F4.png", "Images/F5.png", "Images/F6.png"],
+    pareja: ["Images/F7.png", "Images/F8.png", "Images/F9.png"]
   },
   footer: {
     hashtag: "#ArielYMarleny",
