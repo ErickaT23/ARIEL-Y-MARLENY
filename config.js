@@ -30,7 +30,7 @@ const config = {
     descripcion: "Te invitamos a celebrar los 60 años de vida y 36 años de matrimonio de Ariel de León y Marleny Rodríguez el 14 de noviembre de 2026.",
     autor: "Two Design",
     keywords: "invitación, cumpleaños, aniversario, Ariel de León, Marleny Rodríguez, 60 años, 36 años de matrimonio, San Marcos",
-    ogImage: "Images/E2.png"
+    ogImage: "https://arielymarleny.thetwodesign.com/Images/F9.png"
   },
   pareja: {
     nombres: "Ariel de León & Marleny Rodríguez",
