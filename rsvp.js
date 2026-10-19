@@ -16,12 +16,14 @@ function showMsg(el, text, type = "ok") {
   if (!el) return;
   el.textContent = text;
   el.className = `rsvp-msg ${type}`;
+  el.hidden = false;
   el.style.display = "block";
 }
 
 function hideMsg(el) {
   if (!el) return;
   el.style.display = "none";
+  el.hidden = true;
   el.textContent = "";
 }
 
@@ -163,6 +165,7 @@ function markConfirmedUI(message) {
   if (guestCountWrapper) guestCountWrapper.style.display = "none";
 
   if (msg) {
+    msg.hidden = false;
     msg.style.display = "block";
     msg.className = "rsvp-msg ok";
     msg.textContent = message || "Gracias por confirmar tu asistencia.";
