@@ -565,7 +565,7 @@ a{
     margin:8px 0;
     font-family:var(--text);
     font-style:italic;
-    font-size:22px;
+    font-size:24px;
   }
   .event-note-location{
     margin-bottom:14px;
@@ -883,7 +883,7 @@ a{
   /* ====== CONTADOR HORIZONTAL ====== */
   .count-title{
     font-family: var(--cursive);
-    font-size:28px;
+    font-size:22px;
     margin-bottom:22px;
     color:#3b2d2d;
   }
@@ -1408,12 +1408,18 @@ a{
     font-family:var(--title);
   }
   .rsvp-form #rsvp-name{
+    display:block;
+    width:100%;
+    min-height:1.2em;
+    resize:none;
+    overflow:hidden;
+    text-align:center;
     padding:0;
     border:none;
     background:transparent;
     box-shadow:none;
     font-family:var(--cursive);
-    font-size:28px;
+    font-size:22px;
     font-style:normal;
     background:var(--gold-text);
     -webkit-background-clip:text;
@@ -2506,6 +2512,12 @@ body{
   color:var(--olive-dark) !important;
 }
 
+.rsvp-msg.ok{
+  background:url("Images/textura-2.png") center/cover no-repeat;
+  border:1px solid var(--olive);
+  color:var(--olive) !important;
+}
+
 .rsvp-form input[type="text"],
 .rsvp-form select{
   border-color:rgba(0,106,78,.2);
@@ -2528,9 +2540,21 @@ body{
 }
 
 .rsvp-form label[for="guest-count"]{
+  display:block;
+  width:min(100%, 320px);
+  justify-self:center;
+  box-sizing:border-box;
+  min-height:32px;
+  padding:6px 10px;
+  border:1px solid rgba(153,121,80,.28);
+  border-radius:999px;
   background:var(--gold-text);
   background-size:220% auto;
-  -webkit-background-clip:text;
-  -webkit-text-fill-color:transparent;
-  background-clip:text;
+  color:#FFFFFF;
+  font-family:var(--title);
+  font-size:10px;
+  font-weight:400;
+  letter-spacing:.08em;
+  text-align:center;
+  box-shadow:0 10px 22px rgba(153,121,80,.18);
 }

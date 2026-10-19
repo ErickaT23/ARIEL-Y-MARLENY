@@ -25,6 +25,40 @@ function hideMsg(el) {
   el.textContent = "";
 }
 
+function formatGuestName(name) {
+  const words = String(name || "Nombre del invitado").trim().split(/\s+/);
+  const lines = [];
+  let line = "";
+
+  words.forEach((word) => {
+    if (word.length > 20) {
+      if (line) lines.push(line);
+      for (let index = 0; index < word.length; index += 20) {
+        lines.push(word.slice(index, index + 20));
+      }
+      line = "";
+      return;
+    }
+
+    const nextLine = line ? `${line} ${word}` : word;
+    if (nextLine.length > 20) {
+      lines.push(line);
+      line = word;
+    } else {
+      line = nextLine;
+    }
+  });
+
+  if (line) lines.push(line);
+  return lines.join("\n") || "Nombre del invitado";
+}
+
+function setGuestNameField(field, name) {
+  const formatted = formatGuestName(name);
+  field.value = formatted;
+  field.rows = formatted.split("\n").length;
+}
+
 async function apiCheck(id) {
   const url = `${RSVP_ENDPOINT}?guestId=${encodeURIComponent(id)}&t=${Date.now()}`;
   const r = await fetch(url, { cache: "no-store" });
@@ -111,6 +145,9 @@ function markConfirmedUI(message) {
   const form = $("#rsvp-form");
   const btn = $("#btnConfirmarRsvp");
   const msg = $("#msgRsvp");
+  const responseGroup = $(".rsvp-response-group");
+  const responseLabel = $(".rsvp-label");
+  const guestCountWrapper = $("#guest-count-wrapper");
 
   if (form) form.classList.add("is-confirmed");
   document.querySelectorAll('#rsvp-form input, #rsvp-form select, #rsvp-form button').forEach((el) => {
@@ -118,9 +155,12 @@ function markConfirmedUI(message) {
   });
 
   if (btn) {
-    btn.textContent = "Confirmación enviada ✓";
+    btn.style.display = "none";
     btn.classList.add("rsvp-confirmed");
   }
+  if (responseGroup) responseGroup.style.display = "none";
+  if (responseLabel) responseLabel.style.display = "none";
+  if (guestCountWrapper) guestCountWrapper.style.display = "none";
 
   if (msg) {
     msg.style.display = "block";
@@ -167,13 +207,13 @@ document.addEventListener("DOMContentLoaded", () => {
     invitado = getGuestFromURL();
 
     if (!invitado) {
-      inputNombre.value = "Nombre del invitado";
+      setGuestNameField(inputNombre);
       guestCount.innerHTML = '<option value="1">1 pase</option>';
       guestCount.disabled = true;
       return;
     }
 
-    inputNombre.value = invitado.nombre;
+    setGuestNameField(inputNombre, invitado.nombre);
 
     const maxPasses = Math.max(1, Number(invitado.pases || 1));
     guestCount.innerHTML = "";
@@ -189,6 +229,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const show = radioYes.checked;
     guestCountWrapper.style.display = show ? "grid" : "none";
     guestCount.disabled = !show;
+    btnSubmit.style.display = radioNo.checked || (show && Boolean(guestCount.value)) ? "block" : "none";
   }
 
   paintGuestData();
@@ -198,6 +239,7 @@ document.addEventListener("DOMContentLoaded", () => {
   window.addEventListener("guest:updated", paintGuestData);
   radioYes.addEventListener("change", toggleGuestCount);
   radioNo.addEventListener("change", toggleGuestCount);
+  guestCount.addEventListener("change", toggleGuestCount);
 
   (async () => {
     if (!invitado) return;
@@ -247,8 +289,8 @@ document.addEventListener("DOMContentLoaded", () => {
       if (res && (res.ok === true || res.success === true)) {
         await saveConfirmationToFirebase(invitado, respuesta, pasesSeleccionados);
         const okMessage = respuesta === "SI"
-          ? "Gracias por confirmar tu asistencia. Será un privilegio compartir este día contigo."
-          : "Lamentamos que no puedas acompañarnos en esta ocasión y agradecemos de corazón tu respuesta.";
+          ? "Gracias por confirmar su asistencia. Nos vemos en nuestra boda."
+          : "Lamentamos que no puedan acompañarnos. Los extrañaremos.";
         markConfirmedUI(okMessage);
         return;
       }

@@ -286,7 +286,7 @@
     <div class="rsvp-editorial-note">
       <form id="rsvp-form" class="rsvp-form" novalidate>
         <div class="form-group">
-          <input type="text" id="rsvp-name" name="name" value="Nombre del invitado" readonly>
+          <textarea id="rsvp-name" name="name" rows="1" readonly>Nombre del invitado</textarea>
         </div>
 
         <div class="form-group">
@@ -308,7 +308,7 @@
           <select id="guest-count" name="guests" disabled></select>
         </div>
 
-        <button type="submit" id="btnConfirmarRsvp">Confirmar asistencia</button>
+        <button type="submit" id="btnConfirmarRsvp" style="display:none">Confirmar asistencia</button>
       </form>
 
       <div id="msgRsvp" class="rsvp-msg" style="display:none"></div>
