@@ -62,17 +62,8 @@ function setGuestNameField(field, name) {
 }
 
 async function apiCheck(id) {
-  const url = `${RSVP_ENDPOINT}?guestId=${encodeURIComponent(id)}&t=${Date.now()}`;
-  const r = await fetch(url, { cache: "no-store" });
-  const text = await r.text();
-
-  try {
-    const j = JSON.parse(text);
-    return j.alreadyConfirmed === true || j.alreadyConfirmed === "true" || j.alreadyConfirmed === 1;
-  } catch {
-    console.warn("apiCheck no devolvió JSON. Respuesta:", text.slice(0, 200));
-    return false;
-  }
+  const confirmation = await window.RSVPDatabase?.getConfirmationByGuestId?.(getEventId(), id);
+  return Boolean(confirmation);
 }
 
 async function apiSend(data) {
@@ -108,6 +99,7 @@ async function saveConfirmationToFirebase(invitado, respuesta, pasesSeleccionado
     });
   } catch (error) {
     console.warn("No se pudo guardar la confirmación en Firebase:", error);
+    throw error;
   }
 }
 
@@ -239,6 +231,15 @@ document.addEventListener("DOMContentLoaded", () => {
   toggleGuestCount();
   hideMsg(msg);
 
+  window.RSVPDatabase?.subscribeToInvitados?.(getEventId(), (items) => {
+    const id = new URLSearchParams(window.location.search).get("id");
+    const remoteGuest = items.find((item) => String(item.id) === String(id) && item.activo !== false);
+    window.currentGuest = remoteGuest
+      ? { id: remoteGuest.id, name: remoteGuest.nombre, passes: remoteGuest.pases }
+      : null;
+    window.dispatchEvent(new Event("guest:updated"));
+  });
+
   window.addEventListener("guest:updated", paintGuestData);
   radioYes.addEventListener("change", toggleGuestCount);
   radioNo.addEventListener("change", toggleGuestCount);
@@ -282,25 +283,12 @@ document.addEventListener("DOMContentLoaded", () => {
     btnSubmit.disabled = true;
 
     try {
-      const res = await apiSend({
-        guestId: getRemoteGuestId(invitado.id),
-        nombre: invitado.nombre,
-        pases: String(pasesSeleccionados),
-        respuesta,
-      });
-
-      if (res && (res.ok === true || res.success === true)) {
-        await saveConfirmationToFirebase(invitado, respuesta, pasesSeleccionados);
-        const okMessage = respuesta === "SI"
-          ? "Gracias por confirmar su asistencia. Nos vemos en nuestra boda."
-          : "Lamentamos que no puedan acompañarnos. Los extrañaremos.";
-        markConfirmedUI(okMessage);
-        return;
-      }
-
-      console.warn("Respuesta del endpoint:", res);
-      btnSubmit.disabled = false;
-      showMsg(msg, "No se pudo guardar tu respuesta. Intenta de nuevo.", "error");
+      await saveConfirmationToFirebase(invitado, respuesta, pasesSeleccionados);
+      const okMessage = respuesta === "SI"
+        ? "Gracias por confirmar su asistencia. Nos vemos en nuestra boda."
+        : "Lamentamos que no puedan acompañarnos. Los extrañaremos.";
+      markConfirmedUI(okMessage);
+      return;
     } catch (error) {
       console.error("apiSend:", error);
       btnSubmit.disabled = false;
