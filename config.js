@@ -136,7 +136,8 @@ const config = {
   },
   rsvp: {
     titulo: "Confirmar asistencia",
-    mensaje: "Para nosotros es muy importante que confirmes tu asistencia lo antes posible o que nos indiques si no podrás acompañarnos."
+    mensaje: "Para nosotros es muy importante que confirmes tu asistencia lo antes posible o que nos indiques si no podrás acompañarnos.",
+    whatsapp: "50241549451"
   },
   galeria: {
     portadaPrincipal: "Images/E2.png",

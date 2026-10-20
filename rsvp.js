@@ -284,6 +284,12 @@ document.addEventListener("DOMContentLoaded", () => {
 
     try {
       await saveConfirmationToFirebase(invitado, respuesta, pasesSeleccionados);
+      const whatsapp = String(window.config?.rsvp?.whatsapp || "").replace(/\D/g, "");
+      if (whatsapp) {
+        const attendance = respuesta === "SI" ? `Sí, asistiré con ${pasesSeleccionados} pase(s).` : "No podré asistir.";
+        const message = `Confirmación de asistencia - ${invitado.nombre}: ${attendance}`;
+        window.open(`https://wa.me/${whatsapp}?text=${encodeURIComponent(message)}`, "_blank", "noopener");
+      }
       const okMessage = respuesta === "SI"
         ? "Gracias por confirmar su asistencia. Nos vemos en nuestra boda."
         : "Lamentamos que no puedan acompañarnos. Los extrañaremos.";
